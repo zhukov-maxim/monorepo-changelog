@@ -1,5 +1,4 @@
 const fs = require('fs');
-const dateRegex = require('./consts');
 const utils = require('./utils');
 const walkDir = require('./io');
 
@@ -19,20 +18,10 @@ const changelogFiles = allFiles.filter(element => element.endsWith('CHANGELOG.md
 // Get content of all changelog files.
 const changelogs = changelogFiles.map(element => fs.readFileSync(element, 'UTF-8'));
 
-const updatedChangelogs = [];
+// Get new parts of updated changelogs.
+const updatedChangelogs = utils.getUpdatedChangelogs(changelogs, START_DATE);
 
-// Get parts of changelogs updated since START_DATE.
-// Start date is included.
-changelogs.forEach((changelog) => {
-  const newPart = utils.getNewPartOfChangelog(changelog, START_DATE);
-  const hasUpdate = newPart.match(dateRegex);
-
-  if (hasUpdate) {
-    const formattedNewPart = utils.stripWordChangelog(newPart);
-    updatedChangelogs.push(formattedNewPart);
-  }
-});
-
+// Concatenated list of changelogs.
 const updatedChangelogsList = updatedChangelogs.reduce((list, element) => list + element).trim();
 
 console.log(updatedChangelogsList);

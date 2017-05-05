@@ -1,6 +1,24 @@
 const dateRegex = require('./consts');
 
 const utils = {
+  // Get parts of changelogs updated since START_DATE.
+  // Start date is included.
+  getUpdatedChangelogs: (changelogs, startDate) => {
+    const updatedChangelogs = [];
+
+    changelogs.forEach((changelog) => {
+      const newPart = utils.getNewPartOfChangelog(changelog, startDate);
+      const hasUpdate = newPart.match(dateRegex);
+
+      if (hasUpdate) {
+        const formattedNewPart = utils.stripWordChangelog(newPart);
+        updatedChangelogs.push(formattedNewPart);
+      }
+    });
+
+    return updatedChangelogs;
+  },
+
   // Get the part of a changelog not older than start date.
   getNewPartOfChangelog: (changelog, startDate) => {
     const datesAll = changelog.match(dateRegex);
