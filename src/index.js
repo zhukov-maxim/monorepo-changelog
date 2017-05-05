@@ -8,7 +8,7 @@ console.log('Start:\n');
 const START_DATE = '2017-04-22';
 
 const currentDir = __dirname;
-const changelogsDir = `${currentDir}/../markup`;
+const changelogsDir = `${currentDir}/../../markup`;
 
 // Read all files except for junk and files inside node_modules.
 const allFiles = walkDir(changelogsDir, true, true);
@@ -37,7 +37,7 @@ const updatedChangelogsList = updatedChangelogs.reduce((list, element) => list +
 
 console.log(updatedChangelogsList);
 
-const ouputFile = `${currentDir}/SUMMARY after ${START_DATE}.md`;
-fs.writeFileSync(ouputFile, updatedChangelogsList, 'UTF-8');
+const outputFile = `${currentDir}/../output/SUMMARY after ${START_DATE}.md`;
+fs.writeFileSync(outputFile, updatedChangelogsList, 'UTF-8');
 
 console.log('\nEnd.');

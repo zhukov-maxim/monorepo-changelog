@@ -24,7 +24,7 @@
     "onchange": "^3.2.1"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "node ./src/index.js",
     "lint": "node ./node_modules/eslint/bin/eslint *.js; exit 0",
     "test": "node ./node_modules/mocha/bin/mocha; exit 0",
     "build": "npm run lint && npm run test && npm run start",
