@@ -1,20 +1,25 @@
 const fs = require('fs');
+const junk = require('junk');
 
 // Returns a list of files inside the directory and all subdirectories.
-const walkDir = (dir) => {
+const walkDir = (dir, filterJunk = false, filterNodeModules = false) => {
   let results = [];
-  const list = fs.readdirSync(dir);
+  let list = fs.readdirSync(dir);
+
+  if (filterJunk) {
+    list = list.filter(junk.not);
+  }
+
+  if (filterNodeModules) {
+    list = list.filter(file => file !== 'node_modules');
+  }
 
   list.forEach((fileName) => {
     const file = `${dir}/${fileName}`;
-
-    if (file.includes('node_modules')) {
-      return;
-    }
-
     const stat = fs.statSync(file);
+
     if (stat && stat.isDirectory()) {
-      results = results.concat(walkDir(file));
+      results = results.concat(walkDir(file, filterJunk, filterNodeModules));
     } else {
       results.push(file);
     }

@@ -21,7 +21,7 @@ const getNewPartOfChangelog = (changelog, previousDate) => {
 const currentDir = __dirname;
 const changelogsDir = `${currentDir}/../markup`;
 
-const allFiles = walkDir(changelogsDir);
+const allFiles = walkDir(changelogsDir, true, true);
 const changelogFiles = allFiles.filter((element) => {
   if (element.includes('CHANGELOG.md')) {
     return true;

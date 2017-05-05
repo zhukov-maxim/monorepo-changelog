@@ -12,7 +12,9 @@
     "node": ">=6.10.2"
   },
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "junk": "^2.1.0"
+  },
   "devDependencies": {
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.1.3",
