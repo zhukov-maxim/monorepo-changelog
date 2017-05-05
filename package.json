@@ -1,7 +1,12 @@
 {
   "name": "mono-repo-changelog",
   "version": "0.0.1",
-  "description": "",
+  "description": "Utility for assembling changelogs of monorepos",
+  "keywords": [
+    "changelog",
+    "monorepo",
+    "lerna"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/zhukov-maxim/mono-repo-changelog"
