@@ -1,10 +1,14 @@
 {
   "extends": "airbnb-base",
+  "env": {
+    "mocha": true,
+    "node": true
+  },
   "plugins": [
-    "import"
+    "import",
+    "mocha"
   ],
   "rules": {
-    "arrow-body-style": ["error", "as-needed"],
     "comma-dangle": ["error", "never"],
     "no-console": "off"
   }
