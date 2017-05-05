@@ -1,31 +1,10 @@
 const fs = require('fs');
+const dateRegex = require('./consts');
+const walkDir = require('./io');
 
 console.log('Start:\n');
 
-const dateRegex = /\d{4}-\d{2}-\d{2}/g;
 const startDate = '2017-04-20';
-
-const walk = (dir) => {
-  let results = [];
-  const list = fs.readdirSync(dir);
-
-  list.forEach((fileName) => {
-    const file = `${dir}/${fileName}`;
-
-    if (file.includes('node_modules')) {
-      return;
-    }
-
-    const stat = fs.statSync(file);
-    if (stat && stat.isDirectory()) {
-      results = results.concat(walk(file));
-    } else {
-      results.push(file);
-    }
-  });
-
-  return results;
-};
 
 const getNewPartOfChangelog = (changelog, previousDate) => {
   const sampleDates = changelog.match(dateRegex);
@@ -42,7 +21,7 @@ const getNewPartOfChangelog = (changelog, previousDate) => {
 const currentDir = __dirname;
 const changelogsDir = `${currentDir}/../markup`;
 
-const allFiles = walk(changelogsDir);
+const allFiles = walkDir(changelogsDir);
 const changelogFiles = allFiles.filter((element) => {
   if (element.includes('CHANGELOG.md')) {
     return true;
