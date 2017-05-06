@@ -1,6 +1,6 @@
 const fs = require('fs');
 const utils = require('./utils');
-const walkDir = require('./io');
+const io = require('./io');
 
 console.log('Start:\n');
 
@@ -8,9 +8,11 @@ const START_DATE = '2017-04-22';
 
 const currentDir = __dirname;
 const changelogsDir = `${currentDir}/../../markup`;
+const outputDir = `${currentDir}/../output`;
+const outputFile = `${outputDir}/SUMMARY after ${START_DATE}.md`;
 
 // Read all files except for junk and files inside node_modules.
-const allFiles = walkDir(changelogsDir, true, true);
+const allFiles = io.walkDir(changelogsDir, true, true);
 
 // Read all files except for junk and files inside node_modules.
 const changelogFiles = allFiles.filter(element => element.endsWith('CHANGELOG.md'));
@@ -26,7 +28,7 @@ const updatedChangelogsList = updatedChangelogs.reduce((list, element) => list +
 
 console.log(updatedChangelogsList);
 
-const outputFile = `${currentDir}/../output/SUMMARY after ${START_DATE}.md`;
+io.mkDir(outputDir);
 fs.writeFileSync(outputFile, updatedChangelogsList, 'UTF-8');
 
 console.log('\nEnd.');
