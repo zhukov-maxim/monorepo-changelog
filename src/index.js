@@ -14,7 +14,7 @@ const outputFile = `${outputDir}/SUMMARY after ${START_DATE}.md`;
 // Read all files except for junk and files inside node_modules.
 const allFiles = io.walkDir(changelogsDir, true, true);
 
-// Read all files except for junk and files inside node_modules.
+// Filter changelog files.
 const changelogFiles = allFiles.filter(element => element.endsWith('CHANGELOG.md'));
 
 // Get content of all changelog files.
