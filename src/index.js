@@ -18,7 +18,7 @@ const allFiles = io.walkDir(changelogsDir, true, true);
 const changelogFiles = allFiles.filter(element => element.endsWith('CHANGELOG.md'));
 
 // Get content of all changelog files.
-const changelogs = changelogFiles.map(element => fs.readFileSync(element, 'UTF-8'));
+const changelogs = changelogFiles.map(element => fs.readFileSync(element, 'utf8'));
 
 // Get new parts of updated changelogs.
 const updatedChangelogs = utils.getUpdatedChangelogs(changelogs, START_DATE);
@@ -29,6 +29,6 @@ const updatedChangelogsList = updatedChangelogs.reduce((list, element) => list +
 console.log(updatedChangelogsList);
 
 io.mkDir(outputDir);
-fs.writeFileSync(outputFile, updatedChangelogsList, 'UTF-8');
+fs.writeFileSync(outputFile, updatedChangelogsList, 'utf8');
 
 console.log('\nEnd.');
