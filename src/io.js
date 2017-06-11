@@ -2,10 +2,12 @@ const fs = require('fs');
 const junk = require('junk');
 
 const io = {
-  mkDir: (dir) => {
-    const isDirectoryExists = fs.existsSync(dir);
+  // Synchronously checks if the directory exists.
+  isDirectoryExists: dir => fs.existsSync(dir),
 
-    if (!isDirectoryExists) {
+  // Synchronously checks if the directory exists and create if it doesn't.
+  mkDir: (dir) => {
+    if (!io.isDirectoryExists(dir)) {
       fs.mkdirSync(dir);
     }
   },
