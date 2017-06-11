@@ -1,5 +1,6 @@
 {
   "name": "monorepo-changelog",
+  "private": true,
   "version": "0.0.1",
   "description": "Utility for assembling changelogs of monorepos",
   "keywords": [
@@ -25,14 +26,12 @@
     "eslint-config-airbnb-base": "^11.2.0",
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-mocha": "^4.9.0",
-    "mocha": "^3.4.2",
-    "onchange": "^3.2.1"
+    "mocha": "^3.4.2"
   },
   "scripts": {
-    "start": "node ./src/index.js",
-    "lint": "node ./node_modules/eslint/bin/eslint ./src/**/*.js; exit 0",
-    "test": "node ./node_modules/mocha/bin/mocha ./src/**/*.test.js; exit 0",
-    "build": "npm run lint && npm run test && npm run start",
-    "dev": "npm run build && onchange './src/**/*.js' -- npm run build"
+    "lint": "node ./node_modules/eslint/bin/eslint ./src/**/*.js;",
+    "test": "node ./node_modules/mocha/bin/mocha ./src/**/*.test.js",
+    "test:watch": "node ./node_modules/mocha/bin/mocha --watch --reporter min ./src/**/*.test.js",
+    "dev": "npm run test:watch"
   }
 }
