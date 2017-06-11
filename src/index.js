@@ -11,6 +11,10 @@ const defaultOptions = {
 class MonorepoChangelog {
   constructor(userOptions) {
     this.options = Object.assign({}, defaultOptions, userOptions);
+
+    if (!io.isDirectoryExists(this.options.monoRepoPath)) {
+      throw new Error('Monorepo path doesn\'t exist.');
+    }
   }
 
   getChangelog() {
@@ -27,6 +31,10 @@ class MonorepoChangelog {
 
     // Get new parts of updated changelogs.
     const updatedChangelogs = utils.getUpdatedChangelogs(changelogs, startDate);
+
+    if (!updatedChangelogs.length) {
+      return '';
+    }
 
     // Concatenated list of changelogs.
     const updatedChangelogsList = updatedChangelogs.reduce((list, element) =>
