@@ -2,7 +2,7 @@ const assert = require('assert');
 const MonorepoChangelog = require('./index.js');
 
 describe('monorepoChangelog', () => {
-  it('should thow an error if monoRepoPath doesn\'t exist', () => {
+  it('should throw an error if monoRepoPath doesn\'t exist', () => {
     assert.throws(() => {
       // eslint-disable-next-line no-unused-vars
       const monorepoChangelog = new MonorepoChangelog({
