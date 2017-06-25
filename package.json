@@ -17,7 +17,11 @@
   "engines": {
     "node": ">=6.10.2"
   },
-  "main": "index.js",
+  "main": "src/index.js",
+  "bin": {
+    "monorepo-changelog": "bin/index.js",
+    "mrcl": "bin/index.js"
+  },
   "dependencies": {
     "junk": "^2.1.0"
   },
