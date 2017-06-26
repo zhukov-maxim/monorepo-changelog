@@ -48,8 +48,7 @@ class MonorepoChangelog {
     const updatedChangelogsList = updatedChangelogs.reduce((list, element) =>
       list + element).trim();
 
-    // return updatedChangelogsList;
-    return formattedDefaultStartDate;
+    return updatedChangelogsList;
   }
 }
 
