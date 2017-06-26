@@ -4,6 +4,9 @@
     "mocha": true,
     "node": true
   },
+  "parserOptions": {
+    "sourceType": "script"
+  },
   "plugins": [
     "import",
     "mocha"
