@@ -33,7 +33,7 @@
     "mocha": "^3.4.2"
   },
   "scripts": {
-    "lint": "node ./node_modules/eslint/bin/eslint ./src/**/*.js;",
+    "lint": "node ./node_modules/eslint/bin/eslint ./**/*.js;",
     "test": "node ./node_modules/mocha/bin/mocha ./src/**/*.test.js",
     "test:watch": "node ./node_modules/mocha/bin/mocha --watch --reporter min ./src/**/*.test.js",
     "dev": "npm run test:watch"
