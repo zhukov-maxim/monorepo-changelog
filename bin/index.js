@@ -1,12 +1,13 @@
 #! /usr/bin/env node
 
-const MonorepoChangelog = require('../src/index.js');
+'use strict';
 
-const monorepoChangelog = new MonorepoChangelog({
-  monoRepoPath: `${__dirname}/../../markup`,
-  startDate: '2017-04-23'
-});
+const getMonorepoChangelog = require('../src/index.js');
 
-const result = monorepoChangelog.getChangelog();
+const options = {
+  monoRepoPath: `${__dirname}/../../markup`
+};
+
+const result = getMonorepoChangelog(options);
 
 console.log(result);
