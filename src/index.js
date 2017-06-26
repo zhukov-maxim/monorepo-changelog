@@ -4,9 +4,16 @@ const fs = require('fs');
 const utils = require('./utils');
 const io = require('./io');
 
+// By default returns a changelog for last two weeks.
+const DEFAULT_NUMBER_OF_LAST_DAYS = 14;
+
+const rawDefaultStartDate = new Date();
+rawDefaultStartDate.setDate(rawDefaultStartDate.getDate() - DEFAULT_NUMBER_OF_LAST_DAYS);
+const formattedDefaultStartDate = utils.formatDate(rawDefaultStartDate);
+
 const defaultOptions = {
   monoRepoPath: __dirname,
-  startDate: '2017-04-22'
+  startDate: formattedDefaultStartDate
 };
 
 class MonorepoChangelog {
@@ -41,7 +48,8 @@ class MonorepoChangelog {
     const updatedChangelogsList = updatedChangelogs.reduce((list, element) =>
       list + element).trim();
 
-    return updatedChangelogsList;
+    // return updatedChangelogsList;
+    return formattedDefaultStartDate;
   }
 }
 

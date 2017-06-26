@@ -1,8 +1,18 @@
 'use strict';
 
+// Date format 'YYYY-DD-MM'.
 const dateRegex = /\d{4}-\d{2}-\d{2}/g;
 
 const utils = {
+  // Returns formatted date 'YYYY-DD-MM'.
+  formatDate(date) {
+    const year = date.getFullYear();
+    const month = (`0${(date.getMonth() + 1)}`).slice(-2);
+    const day = (`0${(date.getDate())}`).slice(-2);
+
+    return `${year}-${month}-${day}`;
+  },
+
   // Get parts of changelogs updated since START_DATE.
   // Start date is included.
   getUpdatedChangelogs: (changelogs, startDate) => {
