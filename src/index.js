@@ -4,7 +4,6 @@ const io = require('./io');
 
 const defaultOptions = {
   monoRepoPath: __dirname,
-  outputPath: `${__dirname}/output`,
   startDate: '2017-04-22'
 };
 
@@ -41,18 +40,6 @@ class MonorepoChangelog {
       list + element).trim();
 
     return updatedChangelogsList;
-  }
-
-  writeChangelog() {
-    const changelog = this.getChangelog();
-    const { outputPath, startDate } = this.options;
-
-    const outputFile = `${outputPath}/SUMMARY after ${startDate}.md`;
-
-    io.mkDir(outputPath);
-    fs.writeFileSync(outputFile, changelog, 'utf8');
-
-    return 0;
   }
 }
 

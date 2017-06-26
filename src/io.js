@@ -5,13 +5,6 @@ const io = {
   // Synchronously checks if the directory exists.
   isDirectoryExists: dir => fs.existsSync(dir),
 
-  // Synchronously checks if the directory exists and create if it doesn't.
-  mkDir: (dir) => {
-    if (!io.isDirectoryExists(dir)) {
-      fs.mkdirSync(dir);
-    }
-  },
-
   // Returns a list of files inside the directory and all subdirectories.
   walkDir: (dir, filterJunk = false, filterNodeModules = false) => {
     let results = [];
