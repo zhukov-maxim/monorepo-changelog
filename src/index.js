@@ -11,9 +11,13 @@ const rawDefaultStartDate = new Date();
 rawDefaultStartDate.setDate(rawDefaultStartDate.getDate() - DEFAULT_NUMBER_OF_LAST_DAYS);
 const formattedDefaultStartDate = utils.formatDate(rawDefaultStartDate);
 
+const rawDefaultEndDate = new Date();
+const formattedDefaultEndDate = utils.formatDate(rawDefaultEndDate);
+
 const defaultOptions = {
   monoRepoPath: __dirname,
-  startDate: formattedDefaultStartDate
+  startDate: formattedDefaultStartDate,
+  endDate: formattedDefaultEndDate
 };
 
 const getMonorepoChangelog = (userOptions) => {
@@ -23,7 +27,7 @@ const getMonorepoChangelog = (userOptions) => {
     throw new Error('Monorepo path doesn\'t exist.');
   }
 
-  const { monoRepoPath, startDate } = options;
+  const { monoRepoPath, startDate, endDate } = options;
 
   // Read all files except for junk and files inside node_modules.
   const allFiles = io.walkDir(monoRepoPath, true, true);
@@ -35,17 +39,9 @@ const getMonorepoChangelog = (userOptions) => {
   const changelogs = changelogFiles.map(element => fs.readFileSync(element, 'utf8'));
 
   // Get new parts of updated changelogs.
-  const updatedChangelogs = utils.getUpdatedChangelogs(changelogs, startDate);
+  const updatedChangelogs = utils.getUpdatedChangelogs(changelogs, startDate, endDate);
 
-  if (!updatedChangelogs.length) {
-    return '';
-  }
-
-  // Concatenated list of changelogs.
-  const updatedChangelogsList = updatedChangelogs.reduce((list, element) =>
-    list + element).trim();
-
-  return updatedChangelogsList;
+  return updatedChangelogs;
 };
 
 module.exports = getMonorepoChangelog;
