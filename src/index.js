@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const utils = require('./utils');
+const changelog = require('./changelog');
 const io = require('./io');
 
 // By default returns a changelog for last two weeks.
@@ -9,10 +9,10 @@ const DEFAULT_NUMBER_OF_LAST_DAYS = 14;
 
 const rawDefaultStartDate = new Date();
 rawDefaultStartDate.setDate(rawDefaultStartDate.getDate() - DEFAULT_NUMBER_OF_LAST_DAYS);
-const formattedDefaultStartDate = utils.formatDate(rawDefaultStartDate);
+const formattedDefaultStartDate = changelog.formatDate(rawDefaultStartDate);
 
 const rawDefaultEndDate = new Date();
-const formattedDefaultEndDate = utils.formatDate(rawDefaultEndDate);
+const formattedDefaultEndDate = changelog.formatDate(rawDefaultEndDate);
 
 const defaultOptions = {
   monoRepoPath: __dirname,
@@ -39,7 +39,7 @@ const getMonorepoChangelog = (userOptions) => {
   const changelogs = changelogFiles.map(element => fs.readFileSync(element, 'utf8'));
 
   // Get new parts of updated changelogs.
-  const updatedChangelogs = utils.getUpdatedChangelogs(changelogs, startDate, endDate);
+  const updatedChangelogs = changelog.getUpdatedChangelogs(changelogs, startDate, endDate);
 
   return updatedChangelogs;
 };
