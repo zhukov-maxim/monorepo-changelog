@@ -75,7 +75,7 @@ npm install --save monorepo-changelog
 const getMonorepoChangelog = require('monorepo-changelog');
 
 const options = {
-  monoRepoPath: `${__dirname}/../markup/`,
+  monoRepoPath: `${__dirname}/../ui-components`,
   startDate: '2017-05-01',
   endDate: '2017-05-31'
 };
