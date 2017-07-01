@@ -21,6 +21,8 @@ const monoRepoPath = args.find(arg => !arg.match(dateRegex));
 if (monoRepoPath) {
   const normalizedPath = path.resolve(process.cwd(), monoRepoPath);
   options.monoRepoPath = normalizedPath;
+} else {
+  options.monoRepoPath = path.resolve(process.cwd());
 }
 
 // Find all specified dates:
