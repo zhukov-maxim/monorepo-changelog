@@ -2,7 +2,7 @@
   "name": "monorepo-changelog",
   "private": true,
   "version": "0.0.1",
-  "description": "Utility for assembling changelogs of monorepos",
+  "description": "A tool for assembling change logs for projects with multiple packages.",
   "keywords": [
     "changelog",
     "monorepo",
