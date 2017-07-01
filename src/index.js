@@ -24,7 +24,8 @@ const getMonorepoChangelog = (userOptions) => {
   const options = Object.assign({}, defaultOptions, userOptions);
 
   if (!io.isDirectoryExists(options.monoRepoPath)) {
-    throw new Error('Monorepo path doesn\'t exist.');
+    const errorMessage = `Monorepo path '${options.monoRepoPath}' doesn't exist.`;
+    throw new Error(errorMessage);
   }
 
   const { monoRepoPath, startDate, endDate } = options;
