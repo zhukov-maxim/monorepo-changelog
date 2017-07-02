@@ -1,6 +1,6 @@
 {
   "name": "monorepo-changelog",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A tool for assembling change logs for projects with multiple packages.",
   "keywords": [
     "changelog",
